@@ -11,22 +11,31 @@ A Chrome extension that finds accessibility problems on the page you're looking 
 | **Forms** | Controls with no label, placeholder used as the only label, radio groups without a group label, fieldsets without a legend. |
 | **Links** | Links with no text, vague text ("click here"), links that go nowhere (`#`, `javascript:`), new tabs opened without warning, repeated adjacent links. |
 
-Each finding is drawn on the page in an overlay. Select **Show on page** in the popup to scroll to it. The page itself is never modified, and **Clear highlights** removes everything. Results stay in the popup until you clear them or the page reloads.
+## Using the results
+
+- Every finding is highlighted on the page in an overlay. The page itself is never modified.
+- Findings with the same rule are grouped into one card, with a count and a list of the affected elements.
+- Filter the list by **Errors** or **Warnings**.
+- Open **How to fix** for guidance, or **Rule details** for the full rule documentation.
+- Select **Show** next to an element to scroll to it on the page.
+- **Clear** removes all highlights. Otherwise results stay in the popup until the page reloads.
 
 Automated checks find only part of WCAG issues. Also test with a keyboard and a screen reader.
 
 ## Permissions
 
-- `activeTab` and `scripting`: run the checks on the current tab, only when you open the popup.
+- `activeTab` and `scripting`: run a check on the current tab, only when you choose one in the popup.
 - `storage`: keep the latest results while the tab is open (session storage, never synced).
 
-The extension makes no network requests and has no background script.
+The extension makes no network requests and has no background script. **Rule details** links open the rule's documentation on dequeuniversity.com only when you select them.
 
 ## Install
 
-Requires Node.js 18+ and Chrome 105+.
+Requires Node.js 20.9+ and Chrome 105+.
 
 ```bash
+git clone https://github.com/nauris-m/a11y-scanner.git
+cd a11y-scanner
 npm install
 npm run build
 ```
@@ -46,14 +55,14 @@ Extensions can't run on browser pages such as `chrome://` or the Chrome Web Stor
 | `npm test` | Unit tests (Jest + jsdom). |
 | `npm run lint` | ESLint. |
 | `npm run typecheck` | TypeScript type check. |
-| `npm run check` | All of the above except the build. |
+| `npm run check` | Type check, lint and tests in one go. |
 
 ### Project layout
 
 ```
 src/
   manifest.json      Extension manifest (version is taken from package.json at build time)
-  popup/             React popup: UI and calls to chrome.* APIs
+  popup/             React popup: UI (App.tsx, icons.tsx) and chrome.* API calls (chromeApi.ts)
   page/              Runtime injected into the page (bundled to page.js)
     checks/          One file per check
     dom.ts           Selectors, visibility and accessible-name helpers

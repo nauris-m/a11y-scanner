@@ -4,6 +4,9 @@
   "private": true,
   "license": "MIT",
   "description": "Chrome extension that finds accessibility problems on the current page",
+  "engines": {
+    "node": ">=20.9"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch",
