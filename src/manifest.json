@@ -2,7 +2,8 @@
   "manifest_version": 3,
   "name": "Web Accessibility Scanner",
   "version": "1.0.0",
-  "description": "Comprehensive web accessibility scanner for WCAG compliance",
+  "description": "Find accessibility problems on the current page: a WCAG scan with axe-core plus tab order, form and link checks.",
+  "minimum_chrome_version": "105",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -10,28 +11,12 @@
   },
   "action": {
     "default_popup": "popup.html",
+    "default_title": "Scan this page for accessibility issues",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
   },
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "storage",
-    "tabs"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
-} 
+  "permissions": ["activeTab", "scripting", "storage"]
+}
