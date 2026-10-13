@@ -62,3 +62,7 @@ src/
 public/              Popup HTML/CSS and icons, copied to dist/
 test/                Unit tests
 ```
+
+## License
+
+[MIT](LICENSE)

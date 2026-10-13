@@ -2,6 +2,7 @@
   "name": "web-a11y-scanner",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Chrome extension that finds accessibility problems on the current page",
   "scripts": {
     "build": "webpack --mode production",
